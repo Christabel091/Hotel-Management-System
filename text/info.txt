@@ -1,3 +1,4 @@
+information all what we have to do.
 Define the Scope and Requirements:
 
 List the features you want to include, such as booking rooms, checking availability, viewing reservations, and managing customer details and logging out .
