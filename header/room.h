@@ -8,14 +8,16 @@ class Room {
     bool isAvailable;
     std::string room_type;
     int max_size;
-    double price;
+    double room_price;
 public:
-    Room();
-    std::vector<Room> loadRoom();
+    Room(int, std::string, int, double, bool);
+    std::vector<Room> loadRoom(std::vector<Room> &);
     void setIsAvailable();
-    void bookRoom();
+    bool bookRoom(int);
     bool Check_availability();
     void releaseRoom();
-
+    int get_room_number(){
+        return room_number;
+    }
 };
 #endif
