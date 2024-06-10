@@ -12,12 +12,12 @@ class Room {
 public:
     Room(int, std::string, int, double, bool);
     std::vector<Room> loadRoom(std::vector<Room> &);
-    void setIsAvailable();
     bool bookRoom(int);
     bool Check_availability();
     void releaseRoom();
     int get_room_number(){
         return room_number;
+
     }
 };
 #endif
