@@ -1,11 +1,56 @@
 #include<iostream>
 #include<vector>
-//control the general flow of everything
+#include "../header/room.h"
 
-int main(){
+int main() {
+    int want;
+
     std::cout << "Thank you for visiting your hotel";
-    std::cout << "\n What would you like to do today";
-    std::cout << "press 1 to book a room\n 2 to make a reservation 3 cancel a reservation\n\t to release a room.\n\t to quit";
-    
+
+    do {
+        // Display menu options to the user
+        std::cout << "\nWhat would you like to do today?";
+        std::cout << "\n1. Book a room";
+        std::cout << "\n2. Make a reservation";
+        std::cout << "\n3. Cancel a reservation";
+        std::cout << "\n4. Release a room";
+        std::cout << "\n5. Quit";
+        std::cout << "\nEnter your choice: ";
+        
+        // Get user input
+        std::cin >> want;
+
+        // Handle invalid input
+        while (std::cin.fail() || want < 1 || want > 5) {
+            std::cin.clear(); // Clear the error flag
+            std::cin.ignore(INT_MAX, '\n'); // Ignore invalid input
+            std::cout << "Invalid choice. Please enter a number between 1 and 5: ";
+            std::cin >> want;
+        }
+
+        // Switch statement based on user choice
+        switch (want) {
+            case 1:
+                //book a room
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                std::cout << "Quitting..." << std::endl;
+                break;
+            default:
+                std::cout << "Invalid choice. Please try again." << std::endl;
+                break;
+        }
+
+    } while (want != 5);  // Continue until user selects '5' to quit
+
     return 0;
 }
