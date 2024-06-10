@@ -14,9 +14,6 @@ Room::Room(int number,std::string type, int size,double price, bool available){
 }
 
 
-void Room::setIsAvailable(){
-    isAvailable = false;
-}
 
 bool Room::Check_availability(){
     return isAvailable;
@@ -67,7 +64,7 @@ bool Room::bookRoom(int roomNumberToFind){
     rooms = loadRoom(rooms);
     for (auto& room : rooms) {
             if (room.room_number == roomNumberToFind) {
-                if (room.isAvailable) {
+                if (room.Check_availability()) {
                     room.isAvailable = false;
                     return true; // Room booked successfully
                 } else {
