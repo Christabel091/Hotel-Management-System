@@ -19,5 +19,6 @@ public:
         return room_number;
 
     }
+    bool updateRommfile();
 };
 #endif
