@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include "../header/room.h"
-
+#include "../header/reservation.h"
 int main() {
     int want;
 
@@ -34,7 +34,13 @@ int main() {
                 //book a room
                 break;
             case 2:
-                
+                int phone;
+                std::string name;
+                std::cout << "What is your namr:";
+                std::cin >> name;
+                std::cout << "What is our contact number";
+                std::cin >> phone;
+                Reservation reservation(name, phone);
                 break;
             case 3:
                 
