@@ -1,4 +1,5 @@
 #include "../header/room.h"
+
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -15,16 +16,18 @@ Room::Room(int number,std::string type, int size,double price, bool available){
 
 
 
+
 bool Room::Check_availability(){
     return isAvailable;
 }
 
+//unbook booked room
 void Room::releaseRoom(){
     isAvailable = true;
 }
 
 std::vector<Room> Room::loadRoom(std::vector<Room> &rooms){
-    std::ifstream infile ("room.txt");
+    std::ifstream infile ("room.csv");
     int number, size;
     std::string type;
     float price;
