@@ -20,8 +20,8 @@ public:
     bool makeReservations();
     void cancel_reservation();
     void updateReservationFile();
-    std::vector load_reservation();
-    void iewReservation();
+    std::vector<Reservation> load_reservation();
+    void newReservation();
 };
 
 #endif
