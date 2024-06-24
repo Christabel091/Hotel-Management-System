@@ -25,14 +25,17 @@ The Hotel Management System aims to streamline hotel operations such as booking 
 ### Classes and Data Structures
 
 #### Class Room
+
 - **Attributes**: `roomNumber`, `type` (single, double, suite), `isAvailable`, `price`
 - **Methods**: `checkAvailability()`, `bookRoom()`, `releaseRoom()`
 
 #### Class Customer
+
 - **Attributes**: `customerId`, `name`, `contactDetails`
 - **Methods**: `updateDetails()`
 
 #### Class Reservation
+
 - **Attributes**: `reservationId`, `room`, `customer`, `checkInDate`, `checkOutDate`
 - **Methods**: `createReservation()`, `cancelReservation()`, `viewReservation()`
 
@@ -67,16 +70,15 @@ Define the classes with their attributes and methods.
 
 Contributions are welcome! Please fork this repository and submit pull requests for any features or bug fixes. If you're collaborating with others, make sure to communicate and coordinate effectively.
 
-
 ### Acknowledgements
 
 - [Qt](https://www.qt.io/) for future GUI development.
 - [wxWidgets](https://www.wxwidgets.org/) for future GUI development.
-- Contributors: 
+- Contributors:
 
 ## Future Plans
 
-- **Transition to GUI**: After the command-line version is stable, transition the project to a graphical user interface.
+- **Transition to GUI**: After the command-line version is stable, transition the project to a graphical user interface if you want.
 - **Expand Features**: Continuously improve and add new features based on user feedback and requirements.
 
 ## Project Status
