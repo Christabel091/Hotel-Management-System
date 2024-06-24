@@ -26,6 +26,7 @@ void Room::releaseRoom(){
     isAvailable = true;
 }
 
+
 std::vector<Room> Room::loadRoom(std::vector<Room> &rooms){
     std::ifstream infile ("room.csv");
     int number, size;
@@ -62,9 +63,7 @@ std::vector<Room> Room::loadRoom(std::vector<Room> &rooms){
     return rooms;
 }
 
-bool Room::bookRoom(int roomNumberToFind){
-    std::vector<Room> rooms;
-    rooms = loadRoom(rooms);
+bool Room::bookRoom(int roomNumberToFind, std::vector<Room> &rooms){
     for (auto& room : rooms) {
             if (room.room_number == roomNumberToFind) {
                 if (room.Check_availability()) {
