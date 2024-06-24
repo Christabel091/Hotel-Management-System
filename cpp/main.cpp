@@ -2,10 +2,20 @@
 #include<vector>
 #include "../header/room.h"
 #include "../header/reservation.h"
+#include "../header/customer.h"
+#include<string>
 int main() {
     int want;
 
     std::cout << "Thank you for visiting your hotel";
+    std::cout << "What is your name: ";
+    std::string customerName;
+    std::cin >> customerName;
+    std::cout << "If you dont mind can you provide us with your contact details(phone number) ";
+    int number;
+    std::cin >> number;
+    Customer customer(customerName, number);
+
 
     do {
         // Display menu options to the user
@@ -27,26 +37,59 @@ int main() {
             std::cout << "Invalid choice. Please enter a number between 1 and 5: ";
             std::cin >> want;
         }
-
+        Room room;
+        std::vector<Room> rooms;
         // Switch statement based on user choice
         switch (want) {
             case 1:
-                //book a room
+                std::cout << "Which room do you wish to book? ";
+                int rnumber;
+                std::cin >> rnumber;
+                rooms = room.loadRoom();
+                bool booked;
+                booked = room.bookRoom(rnumber, rooms);
+                if (booked) std::cout << "Room successfully booked. ";
+                else std::cout << "room is already booked  You can book another room. or quit";
                 break;
             case 2:
-                int phone;
+                int rooM;
+                int date;
+                int days;
                 std::string name;
                 std::cout << "What is your namr:";
                 std::cin >> name;
-                std::cout << "What is our contact number";
-                std::cin >> phone;
-                Reservation reservation(name, phone);
+                std::cout << "What is the room you want to reserve";
+                std::cin >> rooM;
+                std::cout << "what date and time do you want to reserve the room? ";
+                std::cin >> date;
+                std::cout << "How many days do you want the room reserved? ";
+                std::cin >> days;
+                Reservation reservation(name, rooM, date, days);
+                std::vector<Reservation> reservations;
+                reservations = reservation.load_reservation("reservation.csv");
+                bool isreserved;
+                isreserved = reservation.makeReservations(reservations);
+                if (isreserved) std::cout << "room successfully reserved. Thak you for being a customer. ";
+                else std::cout << "Room is already reserved on the particualr date. Yoi can reserve another room or on another date. Thank you.";
                 break;
             case 3:
-                
+                std::string opinion;
+                std::cout << "Is there a specific reason why you want to cancel your reservation: ";
+                std::cin >> opinion;
+                std::string name;
+                std::cout << "What is the name you used to make reservation: ";
+                std::cin >> name;
+                std::tolower(name);
+                bool isCancelled;
+                isCancelled = reservation.cancel_reservation(name, reservations);
+                if (isCancelled) std::cout << "Resrevation successfully cancelled. ";
+                else std::cout << "Reservation not duccessfult=y cancelled. You either put in a wrong reservation name or wished to cancel. You can try again or exit program. ";
+
+
                 break;
             case 4:
-                
+                room.releaseRoom()
+                std::cout << "Room successfully released. Thank you.";
                 break;
             case 5:
                 std::cout << "Quitting..." << std::endl;
