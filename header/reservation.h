@@ -6,22 +6,22 @@
 #include "../header/room.h"
 
 class Reservation{
-    Room room;
-    int reservationId;
+    int reservationId{0};
     std::string name;
     long int number;
     int room_number;
     int check_in_time;
     int time_period;
-    bool isreserved;
+    bool isreserved {false};
 
 public:
-    Reservation(std::string userName, int phone);
-    bool makeReservations();
-    void cancel_reservation();
+    Reservation(std::string, int , int , int );
+    bool makeReservations(std::vector<Reservation>);
+    void cancel_reservation(std::string , std::vector<Reservation>);
     void updateReservationFile();
-    std::vector<Reservation> load_reservation();
-    void newReservation();
+    std::vector<Reservation> load_reservation(const std::string );
+    void checkin();
 };
+
 
 #endif
