@@ -1,0 +1,4 @@
+reservationId,name,number,room_number,check_in_time,time_period,isreserved
+1,John Doe,1234567890,101,1622548800,3,true
+2,Jane Smith,9876543210,102,1622635200,2,false
+3,Bob Johnson,5555555555,103,1622721600,5,true
