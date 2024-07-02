@@ -20,7 +20,7 @@ public:
     void cancel_reservation(std::string , std::vector<Reservation>);
     void updateReservationFile();
     std::vector<Reservation> load_reservation(const std::string );
-    void checkin();
+    bool checkin();
 };
 
 

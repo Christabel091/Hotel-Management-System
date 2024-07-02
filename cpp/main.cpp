@@ -24,7 +24,8 @@ int main() {
         std::cout << "\n2. Make a reservation";
         std::cout << "\n3. Cancel a reservation";
         std::cout << "\n4. Release a room";
-        std::cout << "\n5. Quit";
+        std::cout << "\n5. Check in."
+        std::cout << "\n6. Quit";
         std::cout << "\nEnter your choice: ";
         
         // Get user input
@@ -56,7 +57,7 @@ int main() {
                 int date;
                 int days;
                 std::string name;
-                std::cout << "What is your namr:";
+                std::cout << "What is your name:";
                 std::cin >> name;
                 std::cout << "What is the room you want to reserve";
                 std::cin >> rooM;
@@ -64,7 +65,7 @@ int main() {
                 std::cin >> date;
                 std::cout << "How many days do you want the room reserved? ";
                 std::cin >> days;
-                Reservation reservation(name, rooM, date, days);
+                Reservation reservation(name, rooM, date, days, number);
                 std::vector<Reservation> reservations;
                 reservations = reservation.load_reservation("reservation.csv");
                 bool isreserved;
@@ -85,21 +86,40 @@ int main() {
                 if (isCancelled) std::cout << "Resrevation successfully cancelled. ";
                 else std::cout << "Reservation not duccessfult=y cancelled. You either put in a wrong reservation name or wished to cancel. You can try again or exit program. ";
 
-
                 break;
             case 4:
-                room.releaseRoom()
-                std::cout << "Room successfully released. Thank you.";
+                int room_number;
+                std::cout << "please what is your room number ";
+                std::cin >> room_number;
+                std::cout << "Kindly state your name agin ";
+                std::string checkout_name;
+                std::cin >> checkout_name;
+                int released = room.releaseRoom(rooms, room_number, checkout_name);
+                if (released) std::cout << "Room successfully released. Thank you.\n";
+                else std::cout << "incorrect room number, put in the correct room number and try again\n"
                 break;
             case 5:
-                std::cout << "Quitting..." << std::endl;
+                //to check in after reservation.
+                std::cout << "What is your name you used for the resr=ervations. ";
+                std::string reserve_name;
+                std::cin >> reserve_name;
+                reserve_name = std::lower(reserve_name);
+                int checked = reservation.checkin( reservations,reserve_name);
+                if (checked){
+                    std::cout << "You have suvvvesfully checked in.\n";
+                }else std::cout << "reservation does not exist. ";
+                break;
+            case 6:
+                room.updateRommfile(rooms);
+                reservation.updateReservationFile(reservations);
+                std::cout << "Thank you for using our program..." << std::endl;
                 break;
             default:
                 std::cout << "Invalid choice. Please try again." << std::endl;
                 break;
         }
 
-    } while (want != 5);  // Continue until user selects '5' to quit
+    } while (want != 6);  // Continue until user selects '6' to quit
 
     return 0;
 }

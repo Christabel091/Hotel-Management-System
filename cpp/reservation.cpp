@@ -7,11 +7,12 @@
 #include<fstream>
 
 
-Reservation::Reservation(std::string userName, int room, int date, int days){
+Reservation::Reservation(std::string userName, int room, int date, int days, int Number){
     name = userName;
     room_number = room;
     check_in_time = date;
     time_period = days;
+    number = Number;
 }
 
 
@@ -23,8 +24,11 @@ bool Reservation::makeReservations(std::vector<Reservation> &reservations){
                 return false;
             }
         }
+        id = reservationId;
     }
+    reservationId++;
     isreserved = true;
+    reservations.emplace_back(reservationId, name,number, room_number,check_in_time, time_period, isreserved);
     return true;
 }
 
@@ -89,6 +93,44 @@ bool Reservation::cancel_reservation(std::string Name, std::vector<Reservation> 
             }
         }
     }
+
+
     return false;
 
+}
+
+void Reservation::updateReservationFile(std::vector<Reservation> reservations){
+    std::ofstream outfile;
+    outfile.open("reservation.csv");
+    outfile << "reservationId,name,number,room_number,check_in_time,time_period,isreserved\n";
+    for (auto& reserve : reservations){
+        outfile << reserve.reservationId << "," 
+        << reserve.name << ','
+        << reserve.number << ','
+        << reserve.room_number << ','
+        << reserve.check_in_time << ','
+        << reserve.time_period << ','
+        << reserve.isreserved << ','
+    }
+}
+
+
+bool Reservation::checkin(std::vector<Reservation> &reservations, std::string reserved_name){
+    int roomUnreserved;
+    for (auto& reserve : reservations){
+        if (reserve.name == reserved_name){
+            std::vout << "Is your reservation for " << reserve.room_number;
+            std::string response;
+            std::cin >> response;
+            response = std::lower(response);
+            if ("yes"){
+                roomUnreserved = reserve.reservationId;
+                return true;
+            }else continue;
+        }
+    }
+     if (roomUnreserved < reserve.size()){
+        reservations.erase(reservations.begin(), roomUnreserved-1);
+     }
+    return false;
 }

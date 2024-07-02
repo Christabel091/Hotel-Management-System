@@ -14,11 +14,12 @@ public:
     std::vector<Room> loadRoom(std::vector<Room> &);
     bool bookRoom(int);
     bool Check_availability();
-    void releaseRoom();
+    bool releaseRoom();
     int get_room_number(){
         return room_number;
 
+
     }
-    bool updateRommfile();
+    void updateRommfile();
 };
 #endif

@@ -6,12 +6,7 @@
 #include<string>
 
 //constructor
-Room::Room(int number,std::string type, int size,double price, bool available){
-    room_number = number;
-    room_type = type;
-    max_size = size;
-    room_price = price;
-    isAvailable = available;
+Room::Room(){
 }
 
 
@@ -22,8 +17,15 @@ bool Room::Check_availability(){
 }
 
 //unbook booked room
-void Room::releaseRoom(){
-    isAvailable = true;
+bool Room::releaseRoom(std::vector<Room> &rooms, int check_out_number, std::string checkout_name){
+    for (auto& room : rooms){
+        if ((room.room_number == check_out_number)){
+            room.isAvailable = true;
+            return true;
+        }
+    }
+    return false;
+    
 }
 
 
@@ -79,3 +81,21 @@ bool Room::bookRoom(int roomNumberToFind, std::vector<Room> &rooms){
 }
 
 
+void  Room::updateRommfile(std::vector<Room> rooms){
+    std::ofstream outfile;
+    outfile.opemm("room.csv");
+    outfile << "RoomNumber,Type,Occupancy,PricePerNight,Status\n";
+    for (auto& room : rooms ){
+        outfile << room.room_number << ',' 
+        << room.room_type << ',' 
+        << room.max_size << ','
+        << room.room_price << ',';
+        if (room.isAvailable){
+            outfile << "available\n";
+        }else {
+            outfile << "occupied\n";
+        }
+
+    }
+    outfile.close()
+}
