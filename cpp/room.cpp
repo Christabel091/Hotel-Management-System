@@ -41,6 +41,7 @@ std::vector<Room> Room::loadRoom(std::vector<Room> &rooms){
     infile >> number ;
     infile.ignore();
     std::getline(infile, type, ',');
+    type = std::lower(type);
     infile.ignore();
     infile >> size ;
     infile.ignore();
@@ -54,6 +55,7 @@ std::vector<Room> Room::loadRoom(std::vector<Room> &rooms){
         infile >> number ;
         infile.ignore();
         std::getline(infile, type, ',');
+        type = std::lower(type);
         infile.ignore();
         infile >> size ;
         infile.ignore();
@@ -65,18 +67,18 @@ std::vector<Room> Room::loadRoom(std::vector<Room> &rooms){
     return rooms;
 }
 
-bool Room::bookRoom(int roomNumberToFind, std::vector<Room> &rooms){
+bool Room::bookRoom(std::vector<Room> &rooms, std::string roomType){
     for (auto& room : rooms) {
-            if (room.room_number == roomNumberToFind) {
+            if (room.room_type == roomType) {
                 if (room.Check_availability()) {
                     room.isAvailable = false;
                     return true; // Room booked successfully
                 } else {
-                    return false; // Room is not available
+                    continue;
                 }
             }
     }
-     return false; // Room not found
+     return false; // type not found
     
 }
 
