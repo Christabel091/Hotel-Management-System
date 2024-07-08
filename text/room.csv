@@ -6,5 +6,5 @@ RoomNumber,Type,Occupancy,PricePerNight,Status
 105,Double,2,150.0,Available
 106,Suite,4,300.0,Occupied
 107,Single,1,100.0,Available
-108,Double,2,150.0,Occupied
+108,Twin,2,150.0,Occupied
 109,Suite,4,300.0,Available

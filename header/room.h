@@ -12,7 +12,7 @@ class Room {
 public:
     Room(int, std::string, int, double, bool);
     std::vector<Room> loadRoom(std::vector<Room> &);
-    bool bookRoom(int);
+    bool bookRoom(std::vector<Room>, std::string);
     bool Check_availability();
     bool releaseRoom();
     int get_room_number(){

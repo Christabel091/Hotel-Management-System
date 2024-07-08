@@ -21,6 +21,7 @@ public:
     void updateReservationFile();
     std::vector<Reservation> load_reservation(const std::string );
     bool checkin();
+    void view_reservation(std::string );
 };
 
 

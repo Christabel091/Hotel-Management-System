@@ -23,9 +23,11 @@ int main() {
         std::cout << "\n1. Book a room";
         std::cout << "\n2. Make a reservation";
         std::cout << "\n3. Cancel a reservation";
-        std::cout << "\n4. Release a room";
-        std::cout << "\n5. Check in."
-        std::cout << "\n6. Quit";
+        std::cout << "\n4 view reservation";
+        std::cout << "\n5. Release a room";
+        std::cout << "\n6. Check in.";
+        std::cout << "\n7Manage customer details";
+        std::cout << "\n8. Log out";
         std::cout << "\nEnter your choice: ";
         
         // Get user input
@@ -43,27 +45,28 @@ int main() {
         // Switch statement based on user choice
         switch (want) {
             case 1:
-                std::cout << "Which room do you wish to book? ";
-                int rnumber;
-                std::cin >> rnumber;
+                std::cout << "and what type of room would you like to book (single/double/suite/twin)";
+                std::string roomType;
+                std::cin >> roomType;
+                roomType = std::lower(roomType);
                 rooms = room.loadRoom();
                 bool booked;
-                booked = room.bookRoom(rnumber, rooms);
-                if (booked) std::cout << "Room successfully booked. ";
-                else std::cout << "room is already booked  You can book another room. or quit";
+                booked = room.bookRoom(rooms, roomType);
+                if (booked) std::cout << "Room successfully booked. \n";
+                else std::cout << "room type is not available. choose again\n";
                 break;
             case 2:
                 int rooM;
                 int date;
                 int days;
                 std::string name;
-                std::cout << "What is your name:";
+                std::cout << "\nWhat is your name:";
                 std::cin >> name;
-                std::cout << "What is the room you want to reserve";
+                std::cout << "\nWhat is the room you want to reserve";
                 std::cin >> rooM;
-                std::cout << "what date and time do you want to reserve the room? ";
+                std::cout << "\nwhat date and time do you want to reserve the room? ";
                 std::cin >> date;
-                std::cout << "How many days do you want the room reserved? ";
+                std::cout << "\nHow many days do you want the room reserved? ";
                 std::cin >> days;
                 Reservation reservation(name, rooM, date, days, number);
                 std::vector<Reservation> reservations;
@@ -88,6 +91,12 @@ int main() {
 
                 break;
             case 4:
+                std::cout << "What is your name exactly as in reservation please";
+                std::string reserved_name;
+                std::cin >> reserved_name;
+                reservation.view_reservation(reserved_name, reservations);
+                break;
+            case 5:
                 int room_number;
                 std::cout << "please what is your room number ";
                 std::cin >> room_number;
@@ -98,9 +107,9 @@ int main() {
                 if (released) std::cout << "Room successfully released. Thank you.\n";
                 else std::cout << "incorrect room number, put in the correct room number and try again\n"
                 break;
-            case 5:
+            case 6:
                 //to check in after reservation.
-                std::cout << "What is your name you used for the resr=ervations. ";
+                std::cout << "What is your name you used for the reservations. ";
                 std::string reserve_name;
                 std::cin >> reserve_name;
                 reserve_name = std::lower(reserve_name);
@@ -109,7 +118,10 @@ int main() {
                     std::cout << "You have suvvvesfully checked in.\n";
                 }else std::cout << "reservation does not exist. ";
                 break;
-            case 6:
+            case 7:
+                
+                break;
+            case 8:
                 room.updateRommfile(rooms);
                 reservation.updateReservationFile(reservations);
                 std::cout << "Thank you for using our program..." << std::endl;
@@ -119,7 +131,7 @@ int main() {
                 break;
         }
 
-    } while (want != 6);  // Continue until user selects '6' to quit
+    } while (want != 8);  // Continue until user selects '8' to quit
 
     return 0;
 }
