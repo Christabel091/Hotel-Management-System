@@ -134,3 +134,23 @@ bool Reservation::checkin(std::vector<Reservation> &reservations, std::string re
      }
     return false;
 }
+
+
+void Reservation::view_reservation(std::string reserved_name, std::vector<Reservation> &reservations,){
+    reserved_name = std::lower(reserved_name);
+    bool viewed = false;
+    std::cout << "These are the reservation made under " << reserved_name << "\n";
+    for (auto &reserve : reservations){
+        if (reserve.name == reserved_name) && (reserve.isreserved){
+            std::cout << reserve.name << "reserved room " << reserve.room_number << "and was reserved on "<< reserve.check_in_time << "and will be staying for" << reserve.time_period << "days\n";
+            viewed = true;
+            continue;
+            
+        }
+    }
+    if (!viewed){
+        std::cout << "There is no reservation made under the name " << reserved_name << '\n';
+        std::cout << "You can click on 2 and make a new reservation or\n Put in the correct name used to make reservation";
+
+    }
+}
