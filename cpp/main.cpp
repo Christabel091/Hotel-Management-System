@@ -11,10 +11,15 @@ int main() {
     std::cout << "What is your name: ";
     std::string customerName;
     std::cin >> customerName;
+    customerName = std::lower(customerName);
     std::cout << "If you dont mind can you provide us with your contact details(phone number) ";
     int number;
     std::cin >> number;
     Customer customer(customerName, number);
+    std::string filename{"customer.csv"};
+    std::vector<Customer> customers;
+    customers = customer.loadCustomer(filename);
+    customer.addCustomer(customers);
 
 
     do {
@@ -119,11 +124,14 @@ int main() {
                 }else std::cout << "reservation does not exist. ";
                 break;
             case 7:
-                
+                std::cout << "what can we do for you today? ";
+                customer.updateDetails(customers);
+
                 break;
             case 8:
                 room.updateRommfile(rooms);
                 reservation.updateReservationFile(reservations);
+                customer.updateCustomerFile(customers);
                 std::cout << "Thank you for using our program..." << std::endl;
                 break;
             default:
