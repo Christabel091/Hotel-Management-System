@@ -66,7 +66,7 @@ std::vector<Reservation> loadReservations(const std::string& filename) {
         std::getline(ss, token, ',');
         isreserved = (token == "true");
         
-        reservations.push_back(Reservation(reservationId, name, number, room_number, check_in_time, time_period, isreserved));
+        reservations.emplace_back(Reservation(reservationId, name, number, room_number, check_in_time, time_period, isreserved));
     }
     
     return reservations;
