@@ -8,8 +8,9 @@ class Customer{
 
 public:
     Customer(std::string, int);
+    void addCustomer();
     void loadCustomer();
     void updateDetails();
-    void updateCustomerFile();
+    void updateCustomerFile(std::vector<Customer>);
 };
 #endif
